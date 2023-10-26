@@ -1,0 +1,180 @@
+import numpy as np
+import pandas as pd
+df=pd.read_csv("/content/Mall_Customers.csv")
+CustomerID Genre Age Annual Income (k$) Spending Score (1-100)
+0 1 Male 19 15 39
+1 2 Male 21 15 81
+2 3 Female 20 16 6
+3 4 Female 23 16 77
+4 5 Female 31 17 40
+... ... ... ... ... ...
+195 196 Female 35 120 79
+196 197 Female 45 126 28
+197 198 Male 32 126 74
+198 199 Male 32 137 18
+199 200 Male 30 137 83
+200 rows × 5 columns
+df
+x=df.iloc[:,3:]#all rows and 3 onwards columns
+print("The X value is:",x)
+The X value is: Annual Income (k$) Spending Score (1-100)
+0 15 39
+1 15 81
+2 16 6
+3 16 77
+4 17 40
+.. ... ...
+195 120 79
+196 126 28
+197 126 74
+198 137 18
+199 137 83
+[200 rows x 2 columns]
+from sklearn.cluster import KMeans,AgglomerativeClustering
+km=KMeans(n_clusters=3)
+km.fit_predict(x)
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2], dtype=int32)
+SSE=[]
+for i in range(1,16):
+km=KMeans(n_clusters=i)
+km.fit_predict(x)
+SSE.append(km.inertia_)
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+10/10/23, 12:42 PM ML5.ipynb - Colaboratory
+https://colab.research.google.com/drive/1HxVm7iu955BY1xYZHbyYx8X2cgU3mBO7#printMode=true 2/4
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+SSE
+[269981.28,
+181363.59595959593,
+106348.37306211122,
+73679.78903948836,
+44448.4554479337,
+37233.814510710006,
+30273.394312070042,
+25018.781613414067,
+21818.114588452176,
+19681.25582847105,
+17508.97057740007,
+15993.9422660915,
+14367.900783072084,
+13204.839599686027,
+11630.993181818183]
+import matplotlib.pyplot as plt
+[<matplotlib.lines.Line2D at 0x7d95d502d0f0>]
+plt.title("Elbow Method")
+plt.xlabel("Value of K")
+plt.ylabel("SSE")
+plt.grid()
+plt.xticks(range(1,16))
+plt.plot(range(1,16),SSE,marker=".",color="blue")
+from sklearn.metrics import silhouette_score
+SILOUT=[]
+for i in range(2,16):#for finding nearest value we need to start from 2
+10/10/23, 12:42 PM ML5.ipynb - Colaboratory
+https://colab.research.google.com/drive/1HxVm7iu955BY1xYZHbyYx8X2cgU3mBO7#printMode=true 3/4
+km=KMeans(n_clusters=i)
+labels=km.fit_predict(x)
+score=silhouette_score(x,labels)
+SILOUT.append(score)
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+[<matplotlib.lines.Line2D at 0x7d95d50ce5c0>]
+plt.title("silhouette Method")
+plt.xlabel("Value of K")
+plt.ylabel("silhouette score")
+plt.grid()
+plt.xticks(range(2,16))
+plt.plot(range(2,16),SILOUT,color="blue")
+km=KMeans(n_clusters=5,random_state=0)
+km.fit_predict(x)
+/usr/local/lib/python3.10/dist-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change fro
+ warnings.warn(
+array([4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3,
+ 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 1,
+ 4, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 2, 1, 2, 0, 2, 0, 2,
+ 1, 2, 0, 2, 0, 2, 0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2,
+ 0, 2], dtype=int32)
+10/10/23, 12:42 PM ML5.ipynb - Colaboratory
+https://colab.research.google.com/drive/1HxVm7iu955BY1xYZHbyYx8X2cgU3mBO7#printMode=true 4/4
+<matplotlib.collections.PathCollection at 0x7d95d4e2c580>
+plt.figure(figsize=(16,9))
+plt.subplot(1,2,1)
+plt.title("Unclustered Data")
+plt.xlabel("Annual Income")
+plt.ylabel("Spending Score")
+plt.scatter(x['Annual Income (k$)'],x['Spending Score (1-100)'])
+plt.subplot(1,2,2)
+plt.title("clustered Data")
+plt.xlabel("Annual Income")
+plt.ylabel("Spending Score")
+plt.scatter(x['Annual Income (k$)'],x['Spending Score (1-100)'],c=labels)
