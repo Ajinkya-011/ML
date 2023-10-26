@@ -1,0 +1,63 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+df2 = pd.read_csv('Mall_Customers.csv')
+
+df2.head()
+
+df = df2[['CustomerID', 'Age', 'Annual Income (k$)']]
+
+df.head()
+
+df = df.rename(columns = {'Annual Income (k$)':'Income'})
+
+df.head()
+
+df.info()
+
+df.describe()
+
+df.shape
+
+df.isnull().sum()
+
+plt.scatter(df.Age, df.Income)
+plt.xlabel('Age')
+plt.ylabel('Income')
+
+from sklearn.cluster import KMeans
+
+km_model = KMeans(n_clusters=3)
+y_pred = km_model.fit_predict(df[['Age', 'Income']])
+y_pred
+
+df['clusters'] = y_pred
+df.head()
+
+km_model.cluster_centers_
+
+df1 = df[df.clusters==0]
+df2 = df[df.clusters==1]
+df3 = df[df.clusters==2]
+plt.scatter(df1.Age, df1['Income'], color = 'g' )
+plt.scatter(df2.Age, df2['Income'], color = 'r')
+plt.scatter(df3.Age, df3['Income'], color = 'b')
+plt.scatter(km_model.cluster_centers_[:,0], km_model.cluster_centers_[:,1], color='purple', marker = '.', label = 'Centroid')
+plt.xlabel('Age')
+plt.ylabel('Income')
+plt.legend()
+
+sse=[]
+k_rng = range(1,10)
+for k in k_rng:
+    km_model = KMeans(n_clusters=k)
+    km_model.fit(df[['Age', 'Income']])
+    sse.append(km_model.inertia_)
+
+plt.xlabel('k')
+plt.ylabel('Sum of Squared Errors')
+plt.plot(k_rng, sse)
+
+

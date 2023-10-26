@@ -1,0 +1,64 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("temperatures.csv")
+
+df
+
+df.head()
+
+x = df['YEAR']
+y = df['ANNUAL']
+
+plt.figure(figsize=(16,9))
+plt.title('Year Vs Anuual')
+plt.xlabel('Year')
+plt.ylabel('Annual')
+plt.scatter(x, y)
+
+x.shape
+
+x = x.values
+
+x = x.reshape(117,1)
+
+x.shape
+
+from sklearn.linear_model import LinearRegression
+
+regressor = LinearRegression()
+
+regressor.fit(x, y)
+
+regressor.coef_
+
+regressor.intercept_
+
+regressor.predict([[2024]])
+
+predicted = regressor.predict(x)
+
+predicted
+
+y
+
+from sklearn.metrics import mean_absolute_error
+
+mean_absolute_error(y, predicted)
+
+from sklearn.metrics import mean_squared_error
+mean_squared_error(y, predicted)
+
+from sklearn.metrics import r2_score
+r2_score(y, predicted)
+
+plt.figure()
+plt.title("Average Temp")
+plt.xlabel('Year')
+plt.ylabel('Annual Average Temp')
+plt.scatter(x, y, label = 'actual', color = 'r')
+plt.scatter(x, predicted, label = 'Predicted', color = 'g', marker = '.')
+plt.legend()
+
+sns.regplot(x = 'YEAR', y = 'ANNUAL', data = df)
